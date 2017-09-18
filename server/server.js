@@ -8,7 +8,7 @@ const router = require('../server/router/router.js')
 //need dbconfig
 
 const ip = 'localhost';
-const port = '3000';
+const port = 3000;
 
 const app = express();
 app
