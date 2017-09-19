@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ThoughtList from './ThoughtList';
+// import ThoughtList from './ThoughtList';
+// import Dropdown from './Dropdown';
 
 
 class App extends Component {
@@ -13,47 +14,52 @@ class App extends Component {
       thoughtsInput: '',
       thoughtsInput: []
     };
+    this.handleUserNameSubmit = this.handleUserNameSubmit.bind(this);
+    this.handleUserNameInputChange = this.handleUserNameInputChange.bind(this);
 }
-  // fetchData() {
-  //   axios.get('http://localhost:1337/api/user')
-  //     .then((results) => {
-  //       //should be userName.data bc that's what I used on the post
-  //       this.setState({userName: results})
-  //       console.log('this.state.userName:', this.state.userName)
-  //       })
-  //     .catch((data) => console.log (error))
-  // }
+  componentDidMount() {
+    this.fetchData();
+  }
+  fetchData() {
+    console.log('fetch so hard');
+    axios.get('http://localhost:3000/api/user')
+      .then((results) => {
+        //should be userName.data bc that's what I used on the post
+        this.setState({userName: results.data})
+        console.log('this.state.userName:', this.state.userName)
+        })
+      .catch((data) => console.log (error))
+  }
 
-  // handleUserNameInputChange (event) {
-  //   this.setState({userInput: event.target.value})
-  // }
+  handleUserNameInputChange (event) {
+    // console.log('working')
+    // console.log(event.target.value)
+    event.preventDefault();
+    this.setState({userInput: event.target.value})
+  }
 
-  // handleUserNameSubmit (event) {
-  // if (this.state.userInput.length > 0) {
-  //     axios.post('http://localhost:1337/api/user', {userName: this.state.userInput})
-  //     .then ((data) => {
-  //       console.log(data, "post successful")
-  //       //fetch here and get request here
-  //     })
-  //     .catch((err) => console.log('error: post failed'))
-  //   }
-  // }
+  handleUserNameSubmit (event) {
+    console.log(this.state.userInput)
+  if (this.state.userInput.length > 0) {
+      axios.post('http://localhost:3000/api/user', {user: this.state.userInput})
+      .then ((data) => {
+        console.log(data, "post successful")
+        //fetch here and get request here
+      })
+      .catch((err) => console.log('error: post failed'))
+    }
+  }
 
-  // handleUserNameSubmit (event) {
-  //   this.setState({userInput: event.target.value})
-  // }
   render() {
     return (
       <div>
-        
-      <form onSubmit = {(event) => this.handleUserNameSubmit (event)}>
         <label>
           Name:
         <input value = {this.state.userInput} onChange={(event) => this.handleUserNameInputChange(event)}/> 
-        <button type="submit"> ADD USER </button>
+        <button onClick = {(event) => this.handleUserNameSubmit (event)}> ADD USER </button>
         </label>
-      </form>
-      {/* <ThoughtList/>  */}
+
+     
       </div>
     );
   }

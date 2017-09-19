@@ -22954,10 +22954,6 @@ var _axios = __webpack_require__(192);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _ThoughtList = __webpack_require__(211);
-
-var _ThoughtList2 = _interopRequireDefault(_ThoughtList);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -22967,6 +22963,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import ThoughtList from './ThoughtList';
+// import Dropdown from './Dropdown';
+
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -22981,63 +22981,72 @@ var App = function (_Component) {
       userName: [],
       thoughtsInput: ''
     }, 'thoughtsInput', []);
+    _this.handleUserNameSubmit = _this.handleUserNameSubmit.bind(_this);
+    _this.handleUserNameInputChange = _this.handleUserNameInputChange.bind(_this);
     return _this;
   }
-  // fetchData() {
-  //   axios.get('http://localhost:1337/api/user')
-  //     .then((results) => {
-  //       //should be userName.data bc that's what I used on the post
-  //       this.setState({userName: results})
-  //       console.log('this.state.userName:', this.state.userName)
-  //       })
-  //     .catch((data) => console.log (error))
-  // }
-
-  // handleUserNameInputChange (event) {
-  //   this.setState({userInput: event.target.value})
-  // }
-
-  // handleUserNameSubmit (event) {
-  // if (this.state.userInput.length > 0) {
-  //     axios.post('http://localhost:1337/api/user', {userName: this.state.userInput})
-  //     .then ((data) => {
-  //       console.log(data, "post successful")
-  //       //fetch here and get request here
-  //     })
-  //     .catch((err) => console.log('error: post failed'))
-  //   }
-  // }
-
-  // handleUserNameSubmit (event) {
-  //   this.setState({userInput: event.target.value})
-  // }
-
 
   _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.fetchData();
+    }
+  }, {
+    key: 'fetchData',
+    value: function fetchData() {
+      var _this2 = this;
+
+      console.log('fetch so hard');
+      _axios2.default.get('http://localhost:3000/api/user').then(function (results) {
+        //should be userName.data bc that's what I used on the post
+        _this2.setState({ userName: results.data });
+        console.log('this.state.userName:', _this2.state.userName);
+      }).catch(function (data) {
+        return console.log(error);
+      });
+    }
+  }, {
+    key: 'handleUserNameInputChange',
+    value: function handleUserNameInputChange(event) {
+      // console.log('working')
+      // console.log(event.target.value)
+      event.preventDefault();
+      this.setState({ userInput: event.target.value });
+    }
+  }, {
+    key: 'handleUserNameSubmit',
+    value: function handleUserNameSubmit(event) {
+      console.log(this.state.userInput);
+      if (this.state.userInput.length > 0) {
+        _axios2.default.post('http://localhost:3000/api/user', { user: this.state.userInput }).then(function (data) {
+          console.log(data, "post successful");
+          //fetch here and get request here
+        }).catch(function (err) {
+          return console.log('error: post failed');
+        });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
-          'form',
-          { onSubmit: function onSubmit(event) {
-              return _this2.handleUserNameSubmit(event);
-            } },
+          'label',
+          null,
+          'Name:',
+          _react2.default.createElement('input', { value: this.state.userInput, onChange: function onChange(event) {
+              return _this3.handleUserNameInputChange(event);
+            } }),
           _react2.default.createElement(
-            'label',
-            null,
-            'Name:',
-            _react2.default.createElement('input', { value: this.state.userInput, onChange: function onChange(event) {
-                return _this2.handleUserNameInputChange(event);
-              } }),
-            _react2.default.createElement(
-              'button',
-              { type: 'submit' },
-              ' ADD USER '
-            )
+            'button',
+            { onClick: function onClick(event) {
+                return _this3.handleUserNameSubmit(event);
+              } },
+            ' ADD USER '
           )
         )
       );
@@ -23877,19 +23886,6 @@ module.exports = function spread(callback) {
     return callback.apply(null, arr);
   };
 };
-
-/***/ }),
-/* 211 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _react = __webpack_require__(33);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ })
 /******/ ]);

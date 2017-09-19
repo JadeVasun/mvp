@@ -5,7 +5,7 @@ const path = require('path');
 const database = require('../Database/dbconfig')
 const router = require('../Server/Router/router')
 
-const port = 1337;
+const port = 3000;
 const ip = 'localhost';
 
 const app = express();

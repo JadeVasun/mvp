@@ -12,8 +12,9 @@ module.exports = {
   },
 
   handleNewUsers: (req, res) => {
+    console.log(req.body.user)
     userDefinition.create({
-      userName: req.body.userName
+      user: req.body.user
     })
     .then ((userName) => {
       res.status(201).send(userName)
