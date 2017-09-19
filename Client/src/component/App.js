@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // import ThoughtList from './ThoughtList';
-// import Dropdown from './Dropdown';
+import Drop from './Dropdown.js';
 
 
 class App extends Component {
@@ -58,8 +58,7 @@ class App extends Component {
         <input value = {this.state.userInput} onChange={(event) => this.handleUserNameInputChange(event)}/> 
         <button onClick = {(event) => this.handleUserNameSubmit (event)}> ADD USER </button>
         </label>
-
-     
+        <Drop usernames = {this.state.userName} />
       </div>
     );
   }

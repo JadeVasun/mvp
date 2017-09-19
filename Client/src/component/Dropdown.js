@@ -1,14 +1,17 @@
 import React from 'react';
+import DropdownNames from './DropdownList';
 
 
-// const Dropdown = ({username}) => {
-//   console.log(username);
-//   return (
-//     <ul>
-//       {
-//         username.map (user =>
-//           <DropdownNames user = {user} />
-//         )}
-//       </ul>
-//   )
-// }
+const Drop = ({usernames}) => {
+  console.log(usernames);
+  return (
+    <select>
+      {
+        usernames.map (user =>
+          <DropdownNames user = {user} />
+        )}
+      </select>
+  )
+};
+
+export default Drop
