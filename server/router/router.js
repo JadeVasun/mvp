@@ -1,8 +1,12 @@
 const router = require('express').Router();
-const controller = require ('../controller/controller.js')
-
+const thoughtsController = require('../Controller/thoughtsController')
+const userController = require('../Controller/userController')
 router.route('/thoughts')
-  .get(controller.getAllThoughts)
-  .post(controller.handleThoughtsPost)
+  .get(thoughtsController.getAllThoughts)
+  .post(thoughtsController.handleThoughtsPosts)
 
-  module.exports = router;
+router.route('/user')
+  .get(userController.getAllUsers)
+  .post(userController.handleNewUsers)
+
+  module.exports = router

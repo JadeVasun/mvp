@@ -1,22 +1,42 @@
 {
-  "name": "MVPShowerThoughts",
+  "name": "hrla17-mvp",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "webpack": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JadeVasun/hrla17-mvp.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JadeVasun/hrla17-mvp/issues"
+  },
+  "homepage": "https://github.com/JadeVasun/hrla17-mvp#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
     "morgan": "^1.8.2",
     "nodemon": "^1.12.1",
     "path": "^0.12.7",
     "pg": "^7.3.0",
+    "react-dd-menu": "^2.0.2",
+    "react-dropdown": "^1.3.0",
     "sequelize": "^4.8.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.6.0"
   }
 }
